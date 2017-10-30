@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: timeoffapp-init
+  labels:
+    app: timeoffapp-init
+spec:
+  activeDeadlineSeconds: 1000
+  template:
+    metadata:
+      name: timeoffapp-init
+    spec:
+      containers:
+      - name: timeoffapp-init
+        image: timeoffapp:v1
+        env:
+        - name: NODE_ENV
+          value: production
+        - name: MYSQL_HOST
+          value: timeoffapp-mysql
+        - name: MYSQL_DATABASE
+          value: timeoffapp
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-pass
+              key: password
+        command: ["npm", "run", "db-create"]
+      restartPolicy: OnFailure

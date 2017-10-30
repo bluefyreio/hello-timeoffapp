@@ -1,0 +1,75 @@
+
+{{> header }}
+
+<h1>Team View</h1>
+
+<div class="row">
+    <div class="col-md-6 lead">{{logged_user.name}} {{logged_user.lastname}}'s team <a href="/calendar/feeds/" data-toggle="tooltip" data-placement="right" title="Export Team View to external calendars"><span class="fa fa-rss"></span></a></div>
+</div>
+
+{{> show_flash_messages }}
+
+<div class="row">&nbsp;</div>
+
+<nav>
+  <div class="row">
+    <div class="col-md-2">
+      <a class="btn btn-default" href="/calendar/teamview/?{{> team_view_url_parameters base_date = prev_date }}"><span aria-hidden="true" class="fa fa-chevron-left"></span> {{as_date_formatted prev_date 'MMM' }}</a>
+    </div>
+
+    <div class="col-md-8 calendar-section-caption"><b>{{as_date_formatted base_date 'MMMM, YYYY' }}</b></div>
+
+    <div class="col-md-2"><a class="btn btn-default pull-right" href="/calendar/teamview/?{{> team_view_url_parameters base_date = next_date }}">{{as_date_formatted next_date 'MMM'}} <span aria-hidden="true" class="fa fa-chevron-right"></span></a></div>
+  </div>
+</nav>
+
+<div class="row">&nbsp;</div>
+
+<div class="row clearfix">
+  <div class="col-md-2">
+    <table class="team-view-users">
+      <tr><td class="team-view-header">
+
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            {{# if current_department }}{{current_department.name}}{{else}}All departments{{/if}}
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="?{{> team_view_url_parameters current_department = null }}">All</a></li>
+            {{#each related_departments}}
+            <li><a href="?{{> team_view_url_parameters base_date = ../base_date current_department = this }}">{{this.name}}</a></li>
+            {{/each}}
+          </ul>
+        </div>
+
+      </td></tr>
+    {{# each users_and_leaves}}
+      <tr class="teamview-user-list-row"><td>{{# if ../logged_user.admin}} {{#with this.user }}<a href="/users/edit/{{this.id}}/">{{ this.full_name }}</a>{{/with}}  {{else}}{{#with this.user }}<span>{{ this.full_name }}</span>{{/with}}{{/if}}</td></tr>
+    {{/each}}
+    </table>
+  </div>
+
+  <div class="col-md-10">
+    <table class="calendar_month">
+      <tr>
+      {{# each users_and_leaves.0.days }}
+        <td colspan="2" class="team-view-header"><b>{{as_date_formatted this.moment 'dd'}}</b></td>
+      {{/each}}
+      </tr>
+    {{# each users_and_leaves}}
+      <tr data-vpp="{{user.id}}">
+        {{# each this.days}}
+          {{> calendar_cell day = this}}
+        {{/each}}
+      </tr>
+    {{/each}}
+    </table>
+  </div>
+</div>
+
+<div class="row clearfix">&nbsp;</div>
+
+{{> book_leave_modal container_id='book_leave_modal' leave_modal_form_action='/calendar/bookleave/' redirect_back_to='/calendar/teamview/'}}
+
+{{> footer }}

@@ -1,0 +1,51 @@
+
+{{> header }}
+
+<h1>Staff</h1>
+
+{{> show_flash_messages }}
+
+<div class="row">
+  <div class="col-md-3 lead">{{company.name}}'s staff</div>
+  <div class="col-md-3 col-md-offset-6">
+    <a href="/users/add/" class="btn btn-info pull-right" id="add_new_department">Add user</a>
+  </div>
+</div>
+
+<div class="row">&nbsp;</div>
+
+<div class="col-md-3 list-group all-departments">
+  <a href="/users/" class="list-group-item{{#unless department_id }} selected-item{{/unless}}">All departments</a>
+  {{#each company.departments}}
+    <a class="list-group-item {{#if_equal ../department_id this.id}} selected-item{{/if_equal}}" href="/users/?department={{this.id}}">{{this.name}}</a>
+  {{/each}}
+</div>
+
+<div class="col-md-9">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Is Administrator?</th>
+        <th>Remaining allowance</th>
+        <th>Days used</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{# each users}}
+      <tr data-vpp-user-row="{{this.id}}">
+        <td class="user-link-cell"><a href="/users/edit/{{this.id}}/">{{this.full_name}}</a></td>
+        <td class="user_department">{{this.department.name}}</td>
+        <td>{{# if this.admin }}Yes{{else}}{{/if}}</td>
+        <td class="vpp-days-remaining">{{ this.calculate_number_of_days_available_in_allowance}}</td>
+        <td class="vpp-days-used">{{this.calculate_number_of_days_taken_from_allowance}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+
+<div class="row">&nbsp;</div>
+
+{{> footer }}

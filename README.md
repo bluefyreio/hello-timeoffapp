@@ -1,4 +1,4 @@
-[logo]: https://portal.bluefyre.io/public2/images/logo.bluefyre.new.png "Bluefyre"
+<img src="https://portal.bluefyre.io/public2/images/logo.bluefyre.new.png" width="150"><br />
 ## TimeOff App - Bluefyre's demo app for k8
 A vulnerable Node.js web application based on the [TimeOff Management app](https://github.com/timeoff-management/application) utilizing [Bluefyre](https://bluefyre.io)'s kubernetes native runtime application security.
 

@@ -31,5 +31,6 @@ kubectl delete service -l app=timeoffapp
 kubectl delete pvc -l app=timeoffapp
 kubectl delete pv local-pv-1 local-pv-2
 
+kubectl delete job timeoffapp-init
 kubectl delete service,deployment timeoffapp
 kubectl delete pvc to-pv-claim

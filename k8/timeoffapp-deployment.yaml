@@ -42,7 +42,7 @@ spec:
          - name: MYSQL_HOST
            value: timeoffapp-mysql
          - name: MYSQL_DATABASE
-           value: timeoffappnoagent
+           value: timeoffapp
          - name: MYSQL_ROOT_PASSWORD
            valueFrom:
              secretKeyRef:

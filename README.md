@@ -6,7 +6,7 @@ A vulnerable Node.js web application based on the [TimeOff Management app](https
 This repo sets up the docker image for the TimeOff Application, the create scripts for mySQL in Kubernetes along with volumes.
 
 ### Prerequisites
-Refer to this [blog post](https://bluefyre.io/getting-started-with-nodejs-and-kubernetes) for prerequisites for minikube, xhyve, OSX. You can certainly run this without minikube as well.
+Refer to this [blog post](https://bluefyre.io/getting-started-nodejs-kubernetes) for prerequisites for minikube, xhyve, OSX. You can certainly run this without minikube as well.
 
 If you're running minikube on OSX, make sure to run the following to set the right context for your docker images
 ```
@@ -64,9 +64,9 @@ kubectl logs REPLACE_YOUR_POD_ID_HERE -f
 kubectl create -f timeoffapp-deployment.yaml
 ```
 
-9. Now in your brower, navigate to the service
+9. Now in your browser, navigate to the service
 ```
-minikube service hello-timeoffapp --url
+minikube service timeoffapp --url
 ```
 
 10. View realtime vulnerabilities in your [Bluefyre](https://portal.bluefyre.io) portal

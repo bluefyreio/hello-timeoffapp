@@ -1,5 +1,6 @@
 bluefyre-agent-node
 bluefyre-agent-node-1.2.0.tgz
+*.tgz
 
 node_modules
 node_modules/

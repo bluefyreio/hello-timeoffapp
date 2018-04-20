@@ -14,9 +14,9 @@ RUN  true \
     && true
 
 WORKDIR /application
-COPY bluefyre-agent-node-1.2.3.tgz .
+COPY bluefyre-agent-node-1.2.5.tgz .
 
-RUN npm install ./bluefyre-agent-node-1.2.3.tgz
+RUN npm install ./bluefyre-agent-node-1.2.5.tgz
 RUN npm install
 
 EXPOSE 3000

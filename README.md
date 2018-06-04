@@ -73,3 +73,6 @@ minikube service timeoffapp --url
 
 
 
+### Running in local mode
+To run as a docker container not in kubernetes
+//TODO

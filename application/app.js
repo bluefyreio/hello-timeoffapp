@@ -85,6 +85,11 @@ app.use( require('./lib/middleware/session_aware_redirect') );
 
 // Here will be publicly accessible routes
 
+// respond with 200 for health check
+app.get('/healthz', function (req, res) {
+  res.status(200).send('healthy')
+})
+
 app.use(
   '/feed/',
   require('./lib/route/feed')

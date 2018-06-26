@@ -17,13 +17,13 @@ ADD --chown=nupp:nupp application $HOME/app
 ADD --chown=nupp:nupp https://github.com/Yelp/dumb-init/releases/download/v1.1.1/dumb-init_1.1.1_amd64 /usr/local/bin/dumb-init
 
 WORKDIR $HOME/app
-COPY --chown=nupp:nupp bluefyre-agent-node-1.2.5.tgz .
+COPY --chown=nupp:nupp bluefyre-agent-node-1.2.6.tgz .
 RUN ls -la $HOME/app
 
 RUN  chmod +x /usr/local/bin/dumb-init && \
 #    npm install --silent --progress=false --production && \
     npm install && \
-    npm install ./bluefyre-agent-node-1.2.5.tgz && \
+    npm install ./bluefyre-agent-node-1.2.6.tgz && \
     chown -R nupp:nupp $HOME/* /usr/local/
 
 RUN echo "builder -- finished"

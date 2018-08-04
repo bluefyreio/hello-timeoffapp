@@ -1,5 +1,5 @@
 # timeoffapp:v1
-# docker build -t timeoffapp:v1 .
+# docker build -t timeoffapp:v2-alpine .
 
 FROM node:8-alpine
 
@@ -14,14 +14,13 @@ ADD . $HOME/app
 ADD  https://github.com/Yelp/dumb-init/releases/download/v1.1.1/dumb-init_1.1.1_amd64 /usr/local/bin/dumb-init
 
 WORKDIR $HOME/app/application
-#COPY bluefyre-agent-node-1.2.7-alpha.tgz .
-RUN mv ../bluefyre-agent-node-1.2.7-alpha.tgz .
+RUN mv ../bluefyre-agent-node-1.2.8.tgz .
 RUN ls -la $HOME/app/application
 
 RUN  chmod +x /usr/local/bin/dumb-init && \
-#    npm install --silent --progress=false --production && \
-    npm install && \
-    npm install ./bluefyre-agent-node-1.2.7-alpha.tgz
+    npm install --silent --progress=false --production && \
+#    npm install && \
+    npm install ./bluefyre-agent-node-1.2.8.tgz
 
 # do this to make the image somewhat thin
 RUN apk del native-deps

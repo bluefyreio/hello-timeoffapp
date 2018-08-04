@@ -3,4 +3,5 @@ node_modules
 #config.json
 
 bluefyre-agent-node-1.2.5.tgz
-bluefyre-agent-node-1.2.6.tgz
+#bluefyre-agent-node-1.2.6.tgz
+bluefyre-agent-node-1.2.7-alpha.tgz

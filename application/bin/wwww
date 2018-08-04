@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 
-var agent = require('bluefyre-agent-node')
+var agent
+if (process.env.DISABLE_BLUEFYRE != "1"){
+  agent = require('bluefyre-agent-node')
+}
+
 var debug = require('debug')('vacation-tracker');
 var app   = require('../app');
 

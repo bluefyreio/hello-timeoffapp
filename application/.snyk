@@ -10,3 +10,9 @@ patch:
         patched: '2018-09-19T16:58:33.983Z'
     - sequelize-cli > gulp > vinyl-fs > glob-watcher > gaze > globule > glob > minimatch:
         patched: '2018-09-19T16:58:33.983Z'
+    - sequelize-cli > gulp > vinyl-fs > glob-stream > minimatch:
+        patched: '2018-09-19T17:01:29.218Z'
+    - sequelize-cli > gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
+        patched: '2018-09-19T17:01:29.218Z'
+    - sequelize-cli > gulp > vinyl-fs > glob-watcher > gaze > globule > glob > minimatch:
+        patched: '2018-09-19T17:01:29.218Z'

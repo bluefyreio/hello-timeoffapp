@@ -27,12 +27,13 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "sequelize": "^3.19.2",
-    "sequelize-cli": "2.5.1",
+    "sequelize-cli": "3.0.0",
     "serve-favicon": "^2.1.7",
     "sqlite3": "^3.1.1",
     "underscore": "^1.8.3",
     "validator": "^3.43.0",
-    "mysql": "2.15.0"
+    "mysql": "2.15.0",
+    "snyk": "^1.96.0"
   },
   "devDependencies": {
     "chai": "^2.2.0",
@@ -44,6 +45,9 @@
     "start": "node bin/wwww",
     "db-create": "node bin/createdb",
     "build-docker": "docker build -t timeoffapp:v1 .",
-    "docker": "docker run -it --name timeoffapp --rm -p 80:3000 -e NODE_ENV=development timeoffapp:v1"
-  }
+    "docker": "docker run -it --name timeoffapp --rm -p 80:3000 -e NODE_ENV=development timeoffapp:v1",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
+  },
+  "snyk": true
 }

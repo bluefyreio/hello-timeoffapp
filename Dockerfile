@@ -1,22 +1,45 @@
-# timeoffapp:latest
-# docker build -t timeoffapp:v1 .
+# -------------------------------------------------------------------
+# Minimal dockerfile from alpine base
+#
+# Instructions:
+# =============
+# 1. Create an empty directory and copy this file into it.
+#
+# 2. Create image with: 
+#	docker build --tag timeoffapp:latest .
+#
+# 3. Run with: 
+#	docker run -d -p 3000:3000 --name alpine_timeoff timeoffapp
+#
+# 4. Login to running container (to update config (vi config/app.json): 
+#	docker exec -ti --user root alpine_timeoff /bin/sh
+# --------------------------------------------------------------------
+FROM alpine:3.8
 
-FROM node:6.11.4
+EXPOSE 3000
 
-RUN apt-get update -y && apt-get upgrade -y
-RUN apt-get install -y git build-essential
-RUN apt-get install -y telnet httpie vim
+LABEL org.label-schema.schema-version="1.0"
+LABEL org.label-schema.docker.cmd="docker run -d -p 3000:3000 --name alpine_timeoff"
+
+RUN apk add --no-cache \
+    git \
+    make \
+    nodejs npm \
+    python \
+    vim \
+    build-base
+
+RUN adduser --system app --home /app    
+USER app
+WORKDIR /app
 
 RUN mkdir -p application
 COPY application application/.
-RUN  true \
-    && chown -R root /application/ \
-    && true
 
-WORKDIR /application
-COPY bluefyre-agent-node-1.2.13.tgz .
+WORKDIR /app/application
+COPY bluefyre-agent-node-1.2.16.tgz .
 
-RUN npm install ./bluefyre-agent-node-1.2.13.tgz
+RUN npm install ./bluefyre-agent-node-1.2.16.tgz
 RUN npm install
 
-EXPOSE 3000
+CMD DEBUG='bluefyre:config,bluefyre:receiver' npm start
